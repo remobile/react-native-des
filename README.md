@@ -5,11 +5,60 @@ A des crypto for react-native
 ```sh
 npm install react-native-des --save
 ```
-### ios
-Drag RCTDes.xcodeproj to your project on Xcode.
-Click on your main project file (the one that represents the .xcodeproj) select Build Phases and drag libRCTDes.a from the Products folder inside the RCTRefreshControl.xcodeproj.
-### android
-come soon
+### Installation (iOS)
+* Drag RCTDes.xcodeproj to your project on Xcode.
+* Click on your main project file (the one that represents the .xcodeproj) select Build Phases and drag libRCTDes.a from the Products folder inside the RCTDes.xcodeproj.
+* Look for Header Search Paths and make sure it contains both $(SRCROOT)/../react-native/React as recursive.
+
+### Installation (Android)
+```gradle
+...
+include ':react-native-des'
+project(':react-native-des').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-des/android/RCTDes')
+```
+
+* In `android/app/build.gradle`
+
+```gradle
+...
+dependencies {
+    ...
+    compile project(':react-native-des')
+}
+```
+
+* register module (in MainActivity.java)
+
+```java
+import com.remobile.des.*;  // <--- import
+
+public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
+  ......
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    mReactRootView = new ReactRootView(this);
+
+    mReactInstanceManager = ReactInstanceManager.builder()
+      .setApplication(getApplication())
+      .setBundleAssetName("index.android.bundle")
+      .setJSMainModuleName("index.android")
+      .addPackage(new MainReactPackage())
+      .addPackage(new RCTDesPackage())              // <------ add here
+      .setUseDeveloperSupport(BuildConfig.DEBUG)
+      .setInitialLifecycleState(LifecycleState.RESUMED)
+      .build();
+
+    mReactRootView.startReactApplication(mReactInstanceManager, "ExampleRN", null);
+
+    setContentView(mReactRootView);
+  }
+
+  ......
+
+}
+```
 
 ## Usage
 
