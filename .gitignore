@@ -5,6 +5,6 @@
 .gradle
 .idea
 npm-debug.log
-/android/RCTDes/build
+/android/build
 /ios/**/*xcuserdata*
 /ios/**/*xcshareddata*
