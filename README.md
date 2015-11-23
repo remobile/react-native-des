@@ -3,7 +3,7 @@ A des crypto for react-native
 
 ## Installation
 ```sh
-npm install react-native-des --save
+npm install @remobile/react-native-des --save
 ```
 ### Installation (iOS)
 * Drag RCTDes.xcodeproj to your project on Xcode.
@@ -64,7 +64,7 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
 
 ### Example
 ```js
-var Des = require('react-native-des');
+var Des = require('@remobile/react-native-des');
 
 Des.encrypt("fangyunjiang is a good developer", "ABCDEFGH", function(base64) {
     console.log(base64); //wWcr2BJdyldTHn4z3AxA0qBIdHQkIKmpqhTgNuRd3fAFXzvIO5347g==
