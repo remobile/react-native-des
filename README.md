@@ -8,7 +8,7 @@ npm install @remobile/react-native-des --save
 ### Installation (iOS)
 * Drag RCTDes.xcodeproj to your project on Xcode.
 * Click on your main project file (the one that represents the .xcodeproj) select Build Phases and drag libRCTDes.a from the Products folder inside the RCTDes.xcodeproj.
-* Look for Header Search Paths and make sure it contains both $(SRCROOT)/../react-native/React as recursive.
+* Look for Header Search Paths and make sure it contains both $(SRCROOT)/../../../react-native/React as recursive.
 
 ### Installation (Android)
 ```gradle
