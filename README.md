@@ -14,7 +14,7 @@ npm install @remobile/react-native-des --save
 ```gradle
 ...
 include ':react-native-des'
-project(':react-native-des').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-des/android/RCTDes')
+project(':react-native-des').projectDir = new File(rootProject.projectDir, '../node_modules/@remobile/react-native-des/android/RCTDes')
 ```
 
 * In `android/app/build.gradle`
