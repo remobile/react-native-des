@@ -13,14 +13,22 @@
 @implementation RCTDes
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(encrypt:(NSString *)data key:(NSString *)key callback:(RCTResponseSenderBlock)callback) {
+RCT_EXPORT_METHOD(encrypt:(NSString *)data key:(NSString *)key success:(RCTResponseSenderBlock)success error:(RCTResponseSenderBlock)error) {
     NSString *base64 = [DesBase64 encryptUseDES:data key:key];
-    callback(@[base64]);
+    if (base64 == nil) {
+        error(@[]);
+    } else {
+        success(@[base64]);
+    }
 }
 
-RCT_EXPORT_METHOD(decrypt:(NSString *)base64 key:(NSString *)key callback:(RCTResponseSenderBlock)callback) {
+RCT_EXPORT_METHOD(decrypt:(NSString *)base64 key:(NSString *)key success:(RCTResponseSenderBlock)success error:(RCTResponseSenderBlock)error) {
     NSString *data = [DesBase64 decryptUseDES:base64 key:key];
-    callback(@[data]);
-    
+    success(@[data]);
+    if (base64 == nil) {
+        error(@[]);
+    } else {
+        success(@[data]);
+    }
 }
 @end

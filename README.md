@@ -70,7 +70,11 @@ Des.encrypt("fangyunjiang is a good developer", "ABCDEFGH", function(base64) {
     console.log(base64); //wWcr2BJdyldTHn4z3AxA0qBIdHQkIKmpqhTgNuRd3fAFXzvIO5347g==
     Des.decrypt(base64, "ABCDEFGH", function(text) {
         console.log(text); //fangyunjiang is a good developer
+    }, function(){
+        console.log("error");
     });
+}, function() {
+    console.log("error");
 });
 ```
 

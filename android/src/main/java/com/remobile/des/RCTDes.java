@@ -36,19 +36,27 @@ public class RCTDes extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void encrypt(String data, String key, Callback callback) throws Exception {
-        byte[] bt = encrypt(data.getBytes(), key.getBytes());
-        String strs = new BASE64Encoder().encode(bt);
-        callback.invoke(strs);
+    public void encrypt(String data, String key, Callback success, Callback error) {
+        try {
+            byte[] bt = encrypt(data.getBytes(), key.getBytes());
+            String strs = new BASE64Encoder().encode(bt);
+            success.invoke(strs);
+        } catch (Exception e) {
+            error.invoke(e.getMessage());
+        }
     }
 
     @ReactMethod
-    public void decrypt(String data, String key, Callback callback) throws IOException, Exception {
-        BASE64Decoder decoder = new BASE64Decoder();
-        byte[] buf = decoder.decodeBuffer(data);
-        byte[] bt = decrypt(buf,key.getBytes());
-        String strs = new String(bt);
-        callback.invoke(strs);
+    public void decrypt(String data, String key, Callback callback, Callback error) {
+        try {
+            BASE64Decoder decoder = new BASE64Decoder();
+            byte[] buf = decoder.decodeBuffer(data);
+            byte[] bt = decrypt(buf,key.getBytes());
+            String strs = new String(bt);
+            callback.invoke(strs);
+        } catch (Exception e) {
+            error.invoke(e.getMessage());
+        }
     }
 
     /**
