@@ -1,0 +1,3 @@
+rm -fr bin
+mkdir -p bin/classes
+javac -d bin/classes -classpath ./libs/sun.misc.BASE64Decoder.jar src/com/remobile/Des.java src/com/remobile/Test.java
