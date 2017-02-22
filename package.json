@@ -1,6 +1,6 @@
 {
     "name": "@remobile/react-native-des",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "A des crypto for react-native",
     "main": "index.js",
     "author": {
