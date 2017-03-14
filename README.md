@@ -11,10 +11,13 @@ npm install @remobile/react-native-des --save
 * Look for Header Search Paths and make sure it contains both $(SRCROOT)/../../../react-native/React as recursive.
 
 ### Installation (Android)
+
+* In `android/settings.gradle`
+
 ```gradle
 ...
 include ':react-native-des'
-project(':react-native-des').projectDir = new File(rootProject.projectDir, '../node_modules/@remobile/react-native-des/android/RCTDes')
+project(':react-native-des').projectDir = new File(rootProject.projectDir, '../node_modules/@remobile/react-native-des/android')
 ```
 
 * In `android/app/build.gradle`
@@ -41,7 +44,7 @@ protected List<ReactPackage> getPackages() {
    new RCTDesPackage(),            // <------ add here
    ......
 }
-
+```
 
 ## Usage
 
