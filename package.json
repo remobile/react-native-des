@@ -1,10 +1,10 @@
 {
-    "name": "@remobile/react-native-des",
-    "version": "1.0.4",
+    "name": "react-native-des-cbc",
+    "version": "1.0.6",
     "description": "A des crypto for react-native",
     "main": "index.js",
     "author": {
-        "name": "YunJiang.Fang",
+        "name": "YunJiang.Fang & PizzaLiu",
         "email": "42550564@qq.com"
     },
     "license": "MIT",
@@ -16,14 +16,15 @@
         "des",
         "crypto",
         "remobile",
-        "mobile"
+        "mobile",
+        "pizzaliu"
     ],
-    "homepage": "https://github.com/remobile/react-native-des",
+    "homepage": "https://github.com/PizzaLiu/react-native-des",
     "bugs": {
-        "url": "https://github.com/remobile/react-native-des/issues"
+        "url": "https://github.com/PizzaLiu/react-native-des/issues"
     },
     "repository": {
         "type": "git",
-        "url": "git://github.com/remobile/react-native-des.git"
+        "url": "git://github.com/PizzaLiu/react-native-des.git"
     }
 }
