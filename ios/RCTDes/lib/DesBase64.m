@@ -12,20 +12,26 @@
 
 @implementation DesBase64
 
-+ (NSString *)encryptUseDES:(NSString *)clearText key:(NSString *)key
++ (NSString *)encryptUseDES:(NSString *)clearText key:(NSString *)key vec:(NSString*)vec
 {
     NSData *data = [clearText dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     NSUInteger dataLength = [data length];
     size_t bufferSize = dataLength + kCCBlockSizeAES128;
     void *buffer = calloc(bufferSize, sizeof(char));
     size_t numBytesEncrypted = 0;
+    CCOptions ccOp = kCCOptionPKCS7Padding | kCCOptionECBMode;
+    void *iv = nil;
+    if (vec) {
+        iv = (void *)[vec UTF8String];
+        ccOp = kCCOptionPKCS7Padding;
+    }
     
     CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt,
                                           kCCAlgorithmDES,
-                                          kCCOptionPKCS7Padding | kCCOptionECBMode,
+                                          ccOp,
                                           [key UTF8String],
                                           kCCKeySizeDES,
-                                          nil,
+                                          iv,
                                           [data bytes],
                                           dataLength,
                                           buffer,
@@ -43,21 +49,26 @@
     return plainText;
 }
 
-+ (NSString*)decryptUseDES:(NSString*)cipherText key:(NSString*)key {
++ (NSString*)decryptUseDES:(NSString*)cipherText key:(NSString*)key vec:(NSString*)vec {
     // 利用 GTMBase64 解碼 Base64 字串
     NSData* cipherData = [GTMBase64 decodeString:cipherText];
     NSUInteger dataLength = [cipherData length];
     size_t bufferSize = dataLength + kCCBlockSizeAES128;
     void *buffer = calloc(bufferSize, sizeof(char));
     size_t numBytesDecrypted = 0;
-    
-    // IV 偏移量不需使用
+    CCOptions ccOp = kCCOptionPKCS7Padding | kCCOptionECBMode;
+    void *iv = nil;
+    if (vec) {
+        iv = (void *)[vec UTF8String];
+        ccOp = kCCOptionPKCS7Padding;
+    }
+
     CCCryptorStatus cryptStatus = CCCrypt(kCCDecrypt,
                                           kCCAlgorithmDES,
-                                          kCCOptionPKCS7Padding | kCCOptionECBMode,
+                                          ccOp,
                                           [key UTF8String],
                                           kCCKeySizeDES,
-                                          nil,
+                                          iv,
                                           [cipherData bytes],
                                           dataLength,
                                           buffer,

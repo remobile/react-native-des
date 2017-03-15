@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface DesBase64 : NSObject
-+ (NSString *)encryptUseDES:(NSString *)clearText key:(NSString *)key;
-+ (NSString*)decryptUseDES:(NSString*)cipherText key:(NSString*)key;
++ (NSString *)encryptUseDES:(NSString *)clearText key:(NSString *)key vec:(NSString *)vec;
++ (NSString*)decryptUseDES:(NSString*)cipherText key:(NSString*)key vec:(NSString *)vec;
 
 @end
