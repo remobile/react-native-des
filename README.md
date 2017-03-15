@@ -1,48 +1,54 @@
 # React Native Des (remobile)
 A des crypto for react-native
 
+> fork from remobile/react-native-des
+> only add cbc feature in Android and iOS
+
 ## Installation
 ```sh
-npm install @remobile/react-native-des --save
+npm install react-native-des-cbc --save
 ```
+
 ### Installation (iOS)
-* Drag RCTDes.xcodeproj to your project on Xcode.
-* Click on your main project file (the one that represents the .xcodeproj) select Build Phases and drag libRCTDes.a from the Products folder inside the RCTDes.xcodeproj.
-* Look for Header Search Paths and make sure it contains both $(SRCROOT)/../../../react-native/React as recursive.
+1. Drag `node_modules/react-native-des-cbc/ios/RCTDes.xcodeproj` to your project's `Libraries` in Xcode.
+2. Click on your main project and select `Build Phases` then drag `libRCTDes.a` from the `Libraries/RCTDes.xcodeproj/Products` into `Link Binary With Libraries`.
+3. (Optional) Look for `Build Settings/Header Search Paths` and make sure it contains both `$(SRCROOT)/../../../react-native/React` as recursive.
+4. `command + b` to buil it.
 
 ### Installation (Android)
 
-* In `android/settings.gradle`
+1/3. In `android/settings.gradle`
 
 ```gradle
-...
-include ':react-native-des'
-project(':react-native-des').projectDir = new File(rootProject.projectDir, '../node_modules/@remobile/react-native-des/android')
+//...
+include ':react-native-des-cbc'
+project(':react-native-des-cbc').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-des-cbc/android')
 ```
 
-* In `android/app/build.gradle`
+2/3. In `android/app/build.gradle`
 
 ```gradle
-...
+//...
 dependencies {
-    ...
-    compile project(':react-native-des')
+    //...
+    compile project(':react-native-des-cbc')
 }
 ```
 
-* register module (in MainApplication.java)
+3/3. register module (in `MainApplication.java`)
 
 ```java
-......
+//......
 import com.remobile.des.RCTDesPackage;  // <--- import
-
-......
+//......
 
 @Override
 protected List<ReactPackage> getPackages() {
-   ......
-   new RCTDesPackage(),            // <------ add here
-   ......
+  return Arrays.<ReactPackage>asList(
+          //......
+          new RCTDesPackage(),            // <------ add here
+         //......
+      );
 }
 ```
 
@@ -50,12 +56,24 @@ protected List<ReactPackage> getPackages() {
 
 ### Example
 ```js
-var Des = require('@remobile/react-native-des');
+var Des = require('react-native-des-cbc');
 
 Des.encrypt("fangyunjiang is a good developer", "ABCDEFGH", function(base64) {
     console.log(base64); //wWcr2BJdyldTHn4z3AxA0qBIdHQkIKmpqhTgNuRd3fAFXzvIO5347g==
     Des.decrypt(base64, "ABCDEFGH", function(text) {
         console.log(text); //fangyunjiang is a good developer
+    }, function(){
+        console.log("error");
+    });
+}, function() {
+    console.log("error");
+});
+
+var vec = "cute";
+Des.encryptCbc("PizzaLiu is a good developer too", "ABCDEFGH", vec, function(base64) {
+    console.log(base64);
+    Des.decryptCbc(base64, "ABCDEFGH", vec, function(text) {
+        console.log(text); //PizzaLiu is a good developer
     }, function(){
         console.log("error");
     });
