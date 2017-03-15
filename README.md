@@ -68,6 +68,9 @@ Des.encrypt("fangyunjiang is a good developer", "ABCDEFGH", function(base64) {
 - `encrypt(text, key, callback)`
 - `encrypt(base64, key, callback)`
 
+- `encryptCbc(text, key, vec, callback)`
+- `encryptCbc(base64, key, vec, callback)`
+
 
 ## Server Side
 * see https://github.com/remobile/react-native-des/blob/master/server
