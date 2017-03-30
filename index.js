@@ -1,12 +1,12 @@
 'use strict';
 
 const ENABLE = true;
-var ReactNative = require('react-native');
-var {
-    NativeModules
+const ReactNative = require('react-native');
+const {
+    NativeModules,
 } = ReactNative;
 
 module.exports = ENABLE ? NativeModules.Des : {
-    encrypt: (text, key, callback)=>callback(text),
-    decrypt: (code, key, callback)=>callback(code),
+    encrypt: (text, key, callback) => callback(text),
+    decrypt: (code, key, callback) => callback(code),
 };

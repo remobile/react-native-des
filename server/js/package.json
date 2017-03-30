@@ -1,6 +1,5 @@
 {
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/remobile/react-native-des.git"
-    }
+  "dependencies": {
+    "crypto-js": "^3.1.9-1"
+  }
 }
