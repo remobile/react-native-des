@@ -68,4 +68,4 @@ Des.encrypt("fangyunjiang is a good developer", "ABCDEFGH", function(base64) {
 
 ## Server Side
 * see https://github.com/remobile/react-native-des/blob/master/server
-* support java, nodejs, js, php
+* support java, nodejs, js, php (see example)
