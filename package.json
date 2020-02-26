@@ -1,6 +1,6 @@
 {
     "name": "react-native-des-cbc",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "description": "A des crypto for react-native",
     "main": "index.js",
     "author": {
